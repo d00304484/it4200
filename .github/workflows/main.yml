@@ -1,9 +1,14 @@
-name: Hello World
+name: Hello World Workflow
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
 
 jobs:
   hello:
@@ -11,5 +16,31 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      # Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install pytest
+          pip install pylint
+
+      # Run echo command
       - name: Run Echo
         run: echo "Hello, world!"
+
+      # Run tests
+      - name: Run test
+        run: pytest /test # If tests are in a subdirectory, add 'pytest tests/'
+
+      # Lint code
+      - name: Lint Code
+        run: pylint src/  # Replace 'src/' with your code directory
+
+      # Build project
+      - name: Build Project
+        run: docker build .
