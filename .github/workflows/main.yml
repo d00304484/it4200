@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v2
       
       # Set up Python
@@ -34,12 +35,16 @@ jobs:
         run: echo "Hello, world!"
 
       # Run tests
-      - name: Run test
-        run: pytest test/ # If tests are in a subdirectory, add 'pytest tests/'
+      - name: Run tests
+        run: pytest test/  # Ensure your test files are in a 'test/' directory
 
       # Lint code
       - name: Lint Code
-        run: pylint sample.py # Replace 'src/' with your code directory
+        run: pylint app.py test/*.py  # Replace with your main Python files
+
+      # Set up Docker Buildx (for multi-platform builds if needed)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
       # Build project
       - name: Build Project
