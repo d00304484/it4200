@@ -39,7 +39,7 @@ jobs:
 
       # Lint code
       - name: Lint Code
-        run: pylint   # Replace 'src/' with your code directory
+        run: pylint sample.py # Replace 'src/' with your code directory
 
       # Build project
       - name: Build Project
