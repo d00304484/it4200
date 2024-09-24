@@ -37,4 +37,10 @@ jobs:
       - name: Run test
         run: pytest test/ # If tests are in a subdirectory, add 'pytest tests/'
 
-    
+      # Lint code
+      - name: Lint Code
+        run: pylint   # Replace 'src/' with your code directory
+
+      # Build project
+      - name: Build Project
+        run: docker build .
