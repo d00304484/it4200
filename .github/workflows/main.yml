@@ -35,7 +35,7 @@ jobs:
 
       # Run tests
       - name: Run test
-        run: pytest /test # If tests are in a subdirectory, add 'pytest tests/'
+        run: pytest test/ # If tests are in a subdirectory, add 'pytest tests/'
 
       # Lint code
       - name: Lint Code
