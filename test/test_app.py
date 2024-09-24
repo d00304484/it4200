@@ -2,9 +2,10 @@
 This module contains unit tests for the Flask app.
 """
 
-from app import app
 import sys
 import os
+from app import app  # Local application import
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 def test_hello():
